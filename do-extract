@@ -7,7 +7,7 @@ BOOST_ROOT="$1"
 
 rm -Rf "$SUBSET_ROOT"
 mkdir "$SUBSET_ROOT"
-bcp --boost="$BOOST_ROOT" python numeric thread format ptr_container "$SUBSET_ROOT"
+bcp --boost="$BOOST_ROOT" python numeric thread chrono ratio format ptr_container "$SUBSET_ROOT"
 
 mkdir -p "$SUBSET_ROOT/boost/ptr_container"
 cp -R $BOOST_ROOT/boost/ptr_container/* "$SUBSET_ROOT/boost/ptr_container"
@@ -16,7 +16,7 @@ for comp in control list repetition; do
   cp -R $BOOST_ROOT/boost/preprocessor/$comp/detail/edg "$SUBSET_ROOT/boost/preprocessor/$comp/detail"
 done
 # Adding "~fusion" here costs 12M. Grr.
-for z in "$SUBSET_ROOT"/boost/(*~intrusive~atomic~fusion~tr1~random~move~archive~math~graph~serialization~python~config~mpl~smart_ptr~predef~detail~utility~preprocessor~type_traits~exception~numeric~function~bind~iterator~range~tuple~thread~pending~date_time~property_map~concept~parameter~optional~multi_index~unordered~functional~integer~ptr_container~container~format~io~units~system~typeof~*hpp); do 
+for z in "$SUBSET_ROOT"/boost/(*~intrusive~atomic~fusion~tr1~random~move~archive~math~graph~serialization~python~config~mpl~smart_ptr~predef~detail~utility~preprocessor~type_traits~exception~numeric~function~bind~iterator~range~tuple~thread~chrono~ratio~pending~date_time~property_map~concept~parameter~optional~multi_index~unordered~functional~integer~ptr_container~container~format~io~units~system~typeof~*hpp); do 
   echo "DELETING $z"
   rm -Rf $z
 done
